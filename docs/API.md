@@ -1,6 +1,6 @@
 # Polygon Export API — Quick Guide
 
-This backend wraps the existing scripts into a small HTTP API your frontend can consume. It fetches candles, computes/attaches indicators, aligns to a New York session-aware time grid, and returns a FE-friendly JSON structure identical to your `out.json` export.
+This backend wraps the existing scripts into a small HTTP API our frontend can consume. It fetches candles, computes/attaches indicators, aligns to a New York session-aware time grid, and returns a FE-friendly JSON structure identical to our `out.json` export.
 
 ## Run locally
 
@@ -38,7 +38,7 @@ uvicorn api:create_app --host 0.0.0.0 --port 8000 --reload
 ```
 
 ### POST /v1/export
-Runs the candle + indicators flow and returns the export JSON your FE can render.
+Runs the candle + indicators flow and returns the export JSON our FE can render.
 
 - **Body**:
 ```json
