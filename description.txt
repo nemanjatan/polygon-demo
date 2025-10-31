@@ -1,0 +1,25 @@
+To begin our collaboration, I would like to offer you a paid test task to be completed 1-2 days.
+
+Please create a Python script using the following library:
+https://pypi.org/project/polygon/
+
+Input:
+• A symbol name, for example FPGL or high volume symbols like TSLA. You can test with TSLA, but our main focus is on small volume symbols such as FPGL.
+• A datetime value that indicates from which date and time the data should be retrieved backwards.
+• A configuration file that specifies which timespan of candles and features for indicators should be fetched for the input symbol.
+
+Output:
+• A JSON file similar to the sample I shared.
+
+There is main challenge with the Polygon API. Candle data and indicator data come from separate API calls, and Polygon sometimes returns uneven timeframes when there is no volume, especially for low liquidity symbols. For example, you can check FPGL on TradingView where 1-minute candles are incomplete.
+
+The main challenge is to merge the candle data and the indicator data into a correct and aligned timeframe, even when some intervals are missing.
+
+We would like the data to be aligned with New York time sessions:
+• 4:00 AM to 9:30 AM Pre-Market
+• 9:30 AM to 4:00 PM Regular Market
+• 4:00 PM to 8:00 PM After-Hours
+
+It is fine if the first version does not fully support all of these sessions, but please keep it in mind when designing the script.
+
+If you can provide a working solution for this task, I will be happy to pay for it.

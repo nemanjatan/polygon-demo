@@ -1,0 +1,65 @@
+- name: "candle_and_indicators_v1"
+  max_candles_limit: 50
+  config:
+    "10s":
+      - name: "rsi14"
+        indicator: "rsi"
+        params: { window_size: 14 }
+        candle_limit: 6
+    "30s":
+      - name: "rsi14"
+        indicator: "rsi"
+        params: { window_size: 14 }
+        candle_limit: 6
+    "1m":
+      - name: "rsi14"
+        indicator: "rsi"
+        params: { window_size: 14 }
+        candle_limit: 10
+    "5m":
+      - name: "ema10"
+        indicator: "ema"
+        params: { window_size: 10 }
+        candle_limit: 10
+
+      - name: "ema21"
+        indicator: "ema"
+        params: { window_size: 21 }
+        candle_limit: 10
+
+      - name: "rsi14"
+        indicator: "rsi"
+        params: { window_size: 14 }
+        candle_limit: 10
+
+      - name: 'macd'
+        indicator: 'macd'
+        params: {short_window_size: 12,
+                  signal_window_size: 9,
+                  long_window_size: 26}
+        candle_limit: 10
+    "15m":
+      - name: "rsi14"
+        indicator: "rsi"
+        params: { window_size: 14 }
+        candle_limit: 8
+    "1h":
+      - name: "rsi14"
+        indicator: "rsi"
+        params: { window_size: 14 }
+        candle_limit: 8
+    "2h":
+      - name: "rsi14"
+        indicator: "rsi"
+        params: { window_size: 14 }
+        candle_limit: 6
+    "4h":
+      - name: "rsi14"
+        indicator: "rsi"
+        params: { window_size: 14 }
+        candle_limit: 3
+    "1d":
+      - name: "rsi14"
+        indicator: "rsi"
+        params: { window_size: 14 }
+        candle_limit: 7
