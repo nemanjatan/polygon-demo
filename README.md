@@ -36,3 +36,15 @@ python fetch_polygon.py \
 - Aligns to continuous time grids per timeframe, filling missing candles with `null` prices and `0` volume.
 - Tries Polygon indicators first; if unavailable, falls back to local computation (EMA, RSI, MACD) for supported indicators.
 - Sessions (Pre, Regular, After) are computed using America/New_York timezone.
+
+## API (optional)
+
+Run a small HTTP server exposing the same functionality for your frontend.
+
+```bash
+pip install -r requirements.txt
+export POLYGON_API_KEY=YOUR_KEY
+uvicorn api:create_app --host 0.0.0.0 --port 8000 --reload
+```
+
+See `docs/API.md` for endpoints, examples, and request/response schemas.
