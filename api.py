@@ -23,7 +23,6 @@ from polygon_client import PolygonDataClient
 
 app = FastAPI(title="Polygon Export API", version="1.0.0")
 
-# CORS (configurable via ALLOW_ORIGINS comma-separated env var)
 allowed_origins_env = os.environ.get("ALLOW_ORIGINS", "")
 if allowed_origins_env.strip():
     allowed_origins = [o.strip() for o in allowed_origins_env.split(",") if o.strip()]
@@ -168,8 +167,5 @@ def export_data(req: ExportRequest) -> Dict[str, Any]:
     return export
 
 
-# Convenience: uvicorn entrypoint
 def create_app() -> FastAPI:
     return app
-
-
