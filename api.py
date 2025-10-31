@@ -2,10 +2,12 @@ from __future__ import annotations
 
 from datetime import datetime
 from typing import Any, Dict, List, Optional
+import os
 
 import pandas as pd
 from dateutil import parser as dtparser
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
 from merge import align_candles_to_grid, attach_indicators, frame_to_export_rows
@@ -20,6 +22,26 @@ from polygon_client import PolygonDataClient
 
 
 app = FastAPI(title="Polygon Export API", version="1.0.0")
+
+# CORS (configurable via ALLOW_ORIGINS comma-separated env var)
+allowed_origins_env = os.environ.get("ALLOW_ORIGINS", "")
+if allowed_origins_env.strip():
+    allowed_origins = [o.strip() for o in allowed_origins_env.split(",") if o.strip()]
+else:
+    allowed_origins = [
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+    ]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=allowed_origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 class IndicatorConfig(BaseModel):
@@ -47,11 +69,14 @@ def health() -> Dict[str, str]:
 
 
 @app.get("/v1/market_status")
-def get_market_status(at: str) -> Dict[str, str]:
-    try:
-        dt = dtparser.parse(at)
-    except Exception as e:
-        raise HTTPException(status_code=400, detail=f"Invalid datetime: {e}")
+def get_market_status(at: Optional[str] = None) -> Dict[str, str]:
+    if at is None:
+        dt = datetime.now()
+    else:
+        try:
+            dt = dtparser.parse(at)
+        except Exception as e:
+            raise HTTPException(status_code=400, detail=f"Invalid datetime: {e}")
     ny = to_ny(dt)
     return {
         "as_of": ny.strftime("%Y-%m-%d %H:%M:%S %z"),
