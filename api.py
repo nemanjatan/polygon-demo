@@ -34,6 +34,8 @@ else:
         "http://127.0.0.1:3000",
         "http://polygon-fe-production.up.railway.app",
         "https://polygon-fe-production.up.railway.app",
+        "http://polygon-fe-production-f1de.up.railway.app",
+        "https://polygon-fe-production-f1de.up.railway.app",
     ]
 
 app.add_middleware(

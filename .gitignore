@@ -17,3 +17,4 @@
 .env.development
 .env.test
 .env.production
+.out.json
